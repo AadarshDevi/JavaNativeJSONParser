@@ -28,6 +28,7 @@ public class JSON {
 
 		final char DOUBLE_QUOTES = '"';
 		final char COLON = ':';
+		final char NEW_LINE = '\n';
 
 		ArrayList<Character> brackets = new ArrayList<>();
 
