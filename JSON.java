@@ -84,33 +84,40 @@ public class JSON {
 				continue;
 			}
 
-			if (letter == DOUBLE_QUOTES && !isKey && !isValue) {
-				isKey = true;
-			} else if (letter == DOUBLE_QUOTES && isKey) {
-				isKey = false;
-			} else if (letter == COLON && !isKey && !isValue) {
-				isKey = false;
-				isValue = true;
-			} else if (letter == COLON && isValue) {
-				isValue = false;
+			if (!isArray) {
+				if (letter == DOUBLE_QUOTES && !isKey && !isValue) {
+					isKey = true;
+				} else if (letter == DOUBLE_QUOTES && isKey) {
+					isKey = false;
+				} else if (letter == COLON && !isKey && !isValue) {
+					isKey = false;
+					isValue = true;
+				} else if (letter == COLON && isValue) {
+					isValue = false;
+				}
+
+				if (letter == DOUBLE_QUOTES || letter == COLON || letter == NEW_LINE || letter == COMMA) {
+					continue;
+				}
+
+				IO.println("\"" + letter + "\"\t " + ((isKey) ? "isKey" : "") + ((isValue) ? "isValue" : ""));
+
+				//noinspection PointlessBooleanExpression
+				if (isKey == true && isValue == true)
+					throw new RuntimeException("KeyValueSameException");
+
+				if (isKey) {
+					key.append(letter);
+				} else if (isValue) {
+					value.append(letter);
+				}
+			} else {
+				// code
+				IO.println("an array");
+				System.exit(0);
 			}
 
-			if (letter == DOUBLE_QUOTES || letter == COLON || letter == NEW_LINE || letter == COMMA) {
-				continue;
-			}
 
-			IO.println("\"" + letter + "\"\t " + ((isKey) ? "isKey" : "") + ((isValue) ? "isValue" : ""));
-
-			//noinspection PointlessBooleanExpression
-			if (isKey == true && isValue == true)
-				throw new RuntimeException("KeyValueSameException");
-
-			if (isKey) {
-				key.append(letter);
-			} else if (isValue) {
-				// need better logic
-				value.append(letter);
-			}
 		}
 
 		IO.println("List length: " + brackets.size());
