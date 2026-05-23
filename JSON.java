@@ -8,14 +8,14 @@ public class JSON {
 	private final StringBuilder jsonBuilder;
 	private boolean firstLine = true;
 
+	public JSON(String jsonString) {
+		this();
+		parseString(jsonString);
+	}
+
 	public JSON() {
 		jsonBuilder = new StringBuilder();
 		jsonBuilder.append("{");
-	}
-
-	public JSON(String jsonString) {
-		jsonBuilder = new StringBuilder();
-		parseString(jsonString);
 	}
 
 	private void parseString(String jsonString) {
@@ -28,6 +28,7 @@ public class JSON {
 
 		final char DOUBLE_QUOTES = '"';
 		final char COLON = ':';
+		final char COMMA = ',';
 		final char NEW_LINE = '\n';
 
 		ArrayList<Character> brackets = new ArrayList<>();
@@ -38,8 +39,8 @@ public class JSON {
 		boolean isBracket;
 		boolean nextValue = false;
 
-		String key = "";
-		String value = "";
+		StringBuilder key = new StringBuilder();
+		StringBuilder value = new StringBuilder();
 
 		for (char letter : jsonString.toCharArray()) {
 
@@ -66,6 +67,16 @@ public class JSON {
 					isBracket = true;
 					isArray = false;
 					break;
+				case COMMA:
+					String keyString = key.toString();
+					String valueString = value.toString();
+					IO.println(key + ": " + value);
+					key.setLength(0);
+					value.setLength(0);
+					IO.println(key + ": " + value);
+					isKey = false;
+					isValue = false;
+					append(keyString, valueString);
 				default:
 					isBracket = false;
 			}
@@ -85,12 +96,21 @@ public class JSON {
 				isValue = false;
 			}
 
-			if (letter == DOUBLE_QUOTES || letter == COLON || letter == NEW_LINE) {
+			if (letter == DOUBLE_QUOTES || letter == COLON || letter == NEW_LINE || letter == COMMA) {
 				continue;
 			}
 
-			if (isKey) {
+			IO.println("\"" + letter + "\"\t " + ((isKey) ? "isKey" : "") + ((isValue) ? "isValue" : ""));
 
+			//noinspection PointlessBooleanExpression
+			if (isKey == true && isValue == true)
+				throw new RuntimeException("KeyValueSameException");
+
+			if (isKey) {
+				key.append(letter);
+			} else if (isValue) {
+				// need better logic
+				value.append(letter);
 			}
 		}
 
