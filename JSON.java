@@ -281,11 +281,10 @@ public class JSON {
 	}
 
 	public String getJSON() {
-		int i = jsonBuilder.lastIndexOf("}");
-		if (i != -1)
-			return jsonBuilder.toString();
-
-		return jsonBuilder + "}";
+		String json = jsonBuilder.toString().trim();
+		if (!json.endsWith("}"))
+			return json + "}";
+		return jsonBuilder.toString();
 	}
 
 }
