@@ -64,6 +64,7 @@ public class JSON {
 						throw new BracketNotFoundException(SQUARE_BRACKET_OPEN);
 					brackets.removeLast();
 					isBracket = true;
+					isArray = false;
 					break;
 				default:
 					isBracket = false;
