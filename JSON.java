@@ -133,6 +133,12 @@ public class JSON {
 				// code
 				IO.println("an array");
 				System.exit(0);
+
+				if (isKey) {
+					key.append(letter);
+				} else if (isValue) {
+					value.append(letter);
+				}
 			}
 
 
