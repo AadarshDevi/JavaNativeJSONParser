@@ -10,7 +10,7 @@ public class JSON {
 
 	public JSON(String jsonString) {
 		this();
-		parseString(jsonString);
+		parser(jsonString);
 	}
 
 	public JSON() {
@@ -18,7 +18,7 @@ public class JSON {
 		jsonBuilder.append("{");
 	}
 
-	private void parseString(String jsonString) {
+	private void parser(String jsonString) {
 
 		final char CURLY_BRACKET_OPEN = '{';
 		final char CURLY_BRACKET_CLOSE = '}';
