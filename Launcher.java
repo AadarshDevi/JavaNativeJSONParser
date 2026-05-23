@@ -35,6 +35,7 @@ public class Launcher {
 			""";
 
 		JSON fromString = new JSON(testJSON);
+		IO.println(fromString);
 
 	}
 }
