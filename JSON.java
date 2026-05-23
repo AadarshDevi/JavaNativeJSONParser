@@ -70,18 +70,6 @@ public class JSON {
 					isBracket = false;
 			}
 
-//			{
-//				IO.print(letter);
-//				if (letter == DOUBLE_QUOTES && !isKey && !isValue) {
-//					isKey = true;
-//
-//				} else if (letter == DOUBLE_QUOTES && isKey) {
-//					isKey = false;
-//				} else if (letter == COLON) {
-//					isKey = false;
-//					isValue = true;
-//				}
-//			}
 			if (isBracket) {
 				continue;
 			}
@@ -110,7 +98,6 @@ public class JSON {
 	}
 
 	private boolean isInvalidBracket(char input, final char checker) {
-//		IO.println(input + ", " + checker);
 		return input != checker;
 	}
 
