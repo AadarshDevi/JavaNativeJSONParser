@@ -36,6 +36,9 @@ public class JSON {
 		boolean isKey = false;
 		boolean isValue = false;
 
+		String key = "";
+		String value = "";
+
 		for (char letter : jsonString.toCharArray()) {
 
 			switch (letter) {
