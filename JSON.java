@@ -32,37 +32,7 @@ public class JSON {
 
 		ArrayList<Character> brackets = new ArrayList<>();
 
-//		String[] arr = jsonString.split("\n");
-//		boolean inArray = false;
-//		for (String str : arr) {
-//
-//			if (str.equals(CURLY_BRACKET_OPEN)) {
-//				brackets.add(CURLY_BRACKET_OPEN);
-//			} else if (str.equals(SQUARE_BRACKET_OPEN)) {
-//				brackets.add(SQUARE_BRACKET_OPEN);
-//			} else if (str.equals(CURLY_BRACKET_CLOSE)) {
-//				if (brackets.getLast().equals(CURLY_BRACKET_OPEN)) {
-//					brackets.removeLast();
-//				} else {
-//					throw new BracketNotFoundException(CURLY_BRACKET_OPEN);
-//				}
-//			} else if (str.equals(SQUARE_BRACKET_CLOSE)) {
-//				if (brackets.getLast().equals(SQUARE_BRACKET_OPEN)) {
-//					brackets.removeLast();
-//				} else {
-//					throw new BracketNotFoundException(SQUARE_BRACKET_CLOSE);
-//				}
-//			} else {
-//				IO.println("\\" + str.trim() + "\\");
-//				String[] map = str.split(",");
-//
-//				if (brackets.getLast().equals(SQUARE_BRACKET_OPEN)) {
-//					brackets.add(SQUARE_BRACKET_OPEN);
-//				}
-//			}
-//		}
-
-		boolean inArray = false;
+		boolean isArray = false;
 		boolean isKey = false;
 		boolean isValue = false;
 
