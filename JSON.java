@@ -86,6 +86,24 @@ public class JSON {
 				continue;
 			}
 
+			if (letter == DOUBLE_QUOTES && !isKey && !isValue) {
+				isKey = true;
+			} else if (letter == DOUBLE_QUOTES && isKey) {
+				isKey = false;
+			} else if (letter == COLON && !isKey && !isValue) {
+				isKey = false;
+				isValue = true;
+			} else if (letter == COLON && isValue) {
+				isValue = false;
+			}
+
+			if (letter == DOUBLE_QUOTES || letter == COLON || letter == NEW_LINE) {
+				continue;
+			}
+
+			if (isKey) {
+
+			}
 		}
 
 		IO.println("List length: " + brackets.size());
