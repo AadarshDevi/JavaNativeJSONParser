@@ -36,6 +36,7 @@ public class JSON {
 		boolean isKey = false;
 		boolean isValue = false;
 		boolean isBracket;
+		boolean nextValue = false;
 
 		String key = "";
 		String value = "";
