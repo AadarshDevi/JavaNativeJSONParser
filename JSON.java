@@ -1,7 +1,18 @@
 import java.util.ArrayList;
 
 /**
- * J2Parser: A Basic Java JSON Parser. It can do int, double, String, boolean, int[], double[], String[], and boolean[]. Nested arrays or values is not supported.
+ * A Basic Java JSON Parser. Nested arrays and not supported. Java Objects to JSON not supported.
+ * <p>
+ * v0.1.0 - Inputs {@code int}, {@code double}, {@code String}, {@code boolean}, {@code int[]},
+ * * {@code double[]}, {@code String[]}, and {@code boolean[]} and use it to make a JSON formatted
+ * string.
+ * <p>
+ * v0.1.1 - A JSON in a String can be used to generate a JSON formatted String. It can only read
+ * {@code int}, {@code double}, {@code String}, {@code boolean} and store them as Strings. It cannot
+ * read arrays.
+ *
+ * @author Aadarsh Devi
+ * @version v0.1
  */
 public class JSON {
 
