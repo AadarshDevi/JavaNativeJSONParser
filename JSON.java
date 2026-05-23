@@ -291,6 +291,14 @@ public class JSON {
 
 	public void removeAll(String... keys) {}
 
+	public String getString(String key) {return "";}
+
+	public int getInt(String key) {return 0;}
+
+	public double getDouble(String key) {return 0.0;}
+
+	public boolean getBoolean(String key) {return true;}
+
 
 	@Override
 	public String toString() {
