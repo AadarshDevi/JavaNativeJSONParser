@@ -1,4 +1,10 @@
+import java.util.ArrayList;
+
+/**
+ * J2Parser: A Basic Java JSON Parser. It can do int, double, String, boolean, int[], double[], String[], and boolean[]. Nested arrays or values is not supported.
+ */
 public class JSON {
+
 	private final StringBuilder jsonBuilder;
 	private boolean firstLine = true;
 
@@ -6,6 +12,7 @@ public class JSON {
 		jsonBuilder = new StringBuilder();
 		jsonBuilder.append("{");
 	}
+
 
 	public void append(String key, String val) {
 		addKey(key);
