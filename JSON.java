@@ -307,7 +307,7 @@ public class JSON {
 
 	public String getJSON() {
 		String json = jsonBuilder.toString().trim();
-		if (!json.endsWith("}"))
+		if (!json.trim().endsWith("}"))
 			return json + "}";
 		return jsonBuilder.toString();
 	}
