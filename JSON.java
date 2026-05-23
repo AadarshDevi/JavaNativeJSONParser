@@ -35,6 +35,7 @@ public class JSON {
 		boolean isArray = false;
 		boolean isKey = false;
 		boolean isValue = false;
+		boolean isBracket;
 
 		String key = "";
 		String value = "";
@@ -44,22 +45,27 @@ public class JSON {
 			switch (letter) {
 				case CURLY_BRACKET_OPEN:
 					brackets.add(CURLY_BRACKET_OPEN);
+					isBracket = true;
 					break;
 				case SQUARE_BRACKET_OPEN:
 					brackets.add(SQUARE_BRACKET_OPEN);
+					isBracket = true;
 					break;
 				case CURLY_BRACKET_CLOSE:
 					if (isInvalidBracket(CURLY_BRACKET_OPEN, brackets.getLast()))
 						throw new BracketNotFoundException(CURLY_BRACKET_OPEN);
 					brackets.removeLast();
+					isBracket = true;
+					isArray = true;
 					break;
 				case SQUARE_BRACKET_CLOSE:
 					if (isInvalidBracket(SQUARE_BRACKET_OPEN, brackets.getLast()))
 						throw new BracketNotFoundException(SQUARE_BRACKET_OPEN);
 					brackets.removeLast();
+					isBracket = true;
 					break;
 				default:
-					IO.print(letter);
+					isBracket = false;
 			}
 
 //			{
@@ -74,6 +80,10 @@ public class JSON {
 //					isValue = true;
 //				}
 //			}
+			if (isBracket) {
+				continue;
+			}
+
 		}
 
 		IO.println("List length: " + brackets.size());
