@@ -84,13 +84,15 @@ public class JSON {
 					arrayFullyRead = true;
 					break;
 				case COMMA:
-					isKey = false;
-					isValue = false;
-					// todo: use correct append for the data type
-					append(key.toString(), value.toString());
-					IO.println(key + ": " + value);
-					key.setLength(0);
-					value.setLength(0);
+					if (!isArray) {
+						isKey = false;
+						isValue = false;
+						// todo: use correct append for the data type
+						append(key.toString(), value.toString());
+						IO.println(key + ": " + value);
+						key.setLength(0);
+						value.setLength(0);
+					}
 
 				default:
 					isBracket = false;
