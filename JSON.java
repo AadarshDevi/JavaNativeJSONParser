@@ -49,9 +49,12 @@ public class JSON {
 		boolean isValue = false;
 		boolean isBracket;
 		boolean nextValue = false;
+		boolean arrayFullyRead = false;
 
 		StringBuilder key = new StringBuilder();
 		StringBuilder value = new StringBuilder();
+
+		boolean firstLetter = false;
 
 		for (char letter : jsonString.toCharArray()) {
 
@@ -64,6 +67,7 @@ public class JSON {
 					brackets.add(SQUARE_BRACKET_OPEN);
 					isBracket = true;
 					isArray = true;
+					arrayFullyRead = false;
 					break;
 				case CURLY_BRACKET_CLOSE:
 					if (isInvalidBracket(CURLY_BRACKET_OPEN, brackets.getLast()))
@@ -77,6 +81,7 @@ public class JSON {
 					brackets.removeLast();
 					isBracket = true;
 					isArray = false;
+					arrayFullyRead = true;
 					break;
 				case COMMA:
 					isKey = false;
