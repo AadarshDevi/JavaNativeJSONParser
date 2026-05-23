@@ -18,6 +18,98 @@ public class JSON {
 		parseString(jsonString);
 	}
 
+	private void parseString(String jsonString) {
+
+		final char CURLY_BRACKET_OPEN = '{';
+		final char CURLY_BRACKET_CLOSE = '}';
+
+		final char SQUARE_BRACKET_OPEN = '[';
+		final char SQUARE_BRACKET_CLOSE = ']';
+
+		final char DOUBLE_QUOTES = '"';
+		final char COLON = ':';
+
+		ArrayList<Character> brackets = new ArrayList<>();
+
+//		String[] arr = jsonString.split("\n");
+//		boolean inArray = false;
+//		for (String str : arr) {
+//
+//			if (str.equals(CURLY_BRACKET_OPEN)) {
+//				brackets.add(CURLY_BRACKET_OPEN);
+//			} else if (str.equals(SQUARE_BRACKET_OPEN)) {
+//				brackets.add(SQUARE_BRACKET_OPEN);
+//			} else if (str.equals(CURLY_BRACKET_CLOSE)) {
+//				if (brackets.getLast().equals(CURLY_BRACKET_OPEN)) {
+//					brackets.removeLast();
+//				} else {
+//					throw new BracketNotFoundException(CURLY_BRACKET_OPEN);
+//				}
+//			} else if (str.equals(SQUARE_BRACKET_CLOSE)) {
+//				if (brackets.getLast().equals(SQUARE_BRACKET_OPEN)) {
+//					brackets.removeLast();
+//				} else {
+//					throw new BracketNotFoundException(SQUARE_BRACKET_CLOSE);
+//				}
+//			} else {
+//				IO.println("\\" + str.trim() + "\\");
+//				String[] map = str.split(",");
+//
+//				if (brackets.getLast().equals(SQUARE_BRACKET_OPEN)) {
+//					brackets.add(SQUARE_BRACKET_OPEN);
+//				}
+//			}
+//		}
+
+		boolean inArray = false;
+		boolean isKey = false;
+		boolean isValue = false;
+
+		for (char letter : jsonString.toCharArray()) {
+
+			switch (letter) {
+				case CURLY_BRACKET_OPEN:
+					brackets.add(CURLY_BRACKET_OPEN);
+					break;
+				case SQUARE_BRACKET_OPEN:
+					brackets.add(SQUARE_BRACKET_OPEN);
+					break;
+				case CURLY_BRACKET_CLOSE:
+					if (isInvalidBracket(CURLY_BRACKET_OPEN, brackets.getLast()))
+						throw new BracketNotFoundException(CURLY_BRACKET_OPEN);
+					brackets.removeLast();
+					break;
+				case SQUARE_BRACKET_CLOSE:
+					if (isInvalidBracket(SQUARE_BRACKET_OPEN, brackets.getLast()))
+						throw new BracketNotFoundException(SQUARE_BRACKET_OPEN);
+					brackets.removeLast();
+					break;
+				default:
+					IO.print(letter);
+			}
+
+//			{
+//				IO.print(letter);
+//				if (letter == DOUBLE_QUOTES && !isKey && !isValue) {
+//					isKey = true;
+//
+//				} else if (letter == DOUBLE_QUOTES && isKey) {
+//					isKey = false;
+//				} else if (letter == COLON) {
+//					isKey = false;
+//					isValue = true;
+//				}
+//			}
+		}
+
+		IO.println("List length: " + brackets.size());
+	}
+
+	private boolean isInvalidBracket(char input, final char checker) {
+//		IO.println(input + ", " + checker);
+		return input != checker;
+	}
+
 	public void append(String key, String val) {
 		addKey(key);
 		colon();
@@ -158,15 +250,6 @@ public class JSON {
 		jsonBuilder.append("]");
 	}
 
-	public void removeAll() {
-		jsonBuilder.setLength(0);
-		jsonBuilder.append("{");
-	}
-
-	public void remove(String key) {}
-
-	public void removeAll(String... keys) {}
-
 	public void append(String key, int decimals, double[] val) {
 		addKey(key);
 		colon();
@@ -181,6 +264,16 @@ public class JSON {
 		}
 		jsonBuilder.append("]");
 	}
+
+	public void removeAll() {
+		jsonBuilder.setLength(0);
+		jsonBuilder.append("{");
+	}
+
+	public void remove(String key) {}
+
+	public void removeAll(String... keys) {}
+
 
 	@Override
 	public String toString() {
