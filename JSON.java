@@ -52,13 +52,13 @@ public class JSON {
 				case SQUARE_BRACKET_OPEN:
 					brackets.add(SQUARE_BRACKET_OPEN);
 					isBracket = true;
+					isArray = true;
 					break;
 				case CURLY_BRACKET_CLOSE:
 					if (isInvalidBracket(CURLY_BRACKET_OPEN, brackets.getLast()))
 						throw new BracketNotFoundException(CURLY_BRACKET_OPEN);
 					brackets.removeLast();
 					isBracket = true;
-					isArray = true;
 					break;
 				case SQUARE_BRACKET_CLOSE:
 					if (isInvalidBracket(SQUARE_BRACKET_OPEN, brackets.getLast()))
