@@ -288,8 +288,4 @@ public class JSON {
 		return jsonBuilder + "}";
 	}
 
-	class Appender {
-
-	}
-
 }
