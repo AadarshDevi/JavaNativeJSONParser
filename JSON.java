@@ -13,6 +13,10 @@ public class JSON {
 		jsonBuilder.append("{");
 	}
 
+	public JSON(String jsonString) {
+		jsonBuilder = new StringBuilder();
+		parseString(jsonString);
+	}
 
 	public void append(String key, String val) {
 		addKey(key);
